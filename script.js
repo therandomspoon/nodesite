@@ -49,6 +49,6 @@ class Network {
   }
 }
 
-const network = new Network(5);
+const network = new Network(50);
 network.call_and_response();
 
