@@ -6,7 +6,7 @@ class Node {
   receive_message(sender_id, message) {
     const outputElement = document.getElementById("output");
     const messageText = `Node ${this.id} received a message from Node ${sender_id}: ${message}`;
-    outputElement.innerHTML += messageText + "\n";
+    outputElement.textContent += messageText + "\n";
   }
 
   send_message(receiver_id, message) {
@@ -29,7 +29,7 @@ class Network {
       this.nodes[receiver_id].receive_message(sender_id, message);
     } else {
       const outputElement = document.getElementById("output");
-      outputElement.innerHTML += "Invalid sender or receiver ID.\n";
+      outputElement.textContent += "Invalid sender or receiver ID.\n";
     }
   }
 
@@ -51,3 +51,4 @@ class Network {
 
 const network = new Network(5);
 network.call_and_response();
+
