@@ -1,75 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Node Messages</title>
+  <title>Node Messaging</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h1>Node Messaging</h1>
   <pre id="output"></pre>
-<script>
-class Node {
-  constructor(id) {
-    this.id = id;
-  }
 
-  receive_message(sender_id, message) {
-    const outputElement = document.getElementById("output");
-    const messageText = `Node ${this.id} received a message from Node ${sender_id}: ${message}`;
-    outputElement.innerHTML += messageText + "\n";
-  }
-
-  send_message(receiver_id, message) {
-    network.send_message(this.id, receiver_id, message);
-  }
-}
-
-class Network {
-  constructor(num_nodes) {
-    this.nodes = {};
-
-    for (let i = 0; i < num_nodes; i++) {
-      const node = new Node(i);
-      this.nodes[i] = node;
-    }
-  }
-
-  send_message(sender_id, receiver_id, message) {
-    if (sender_id in this.nodes && receiver_id in this.nodes) {
-      this.nodes[receiver_id].receive_message(sender_id, message);
-    } else {
-      const outputElement = document.getElementById("output");
-      outputElement.innerHTML += "Invalid sender or receiver ID.\n";
-    }
-  }
-
-  call_and_response() {
-    for (const sender_id in this.nodes) {
-      const sender_node = this.nodes[sender_id];
-
-      for (const receiver_id in this.nodes) {
-        const receiver_node = this.nodes[receiver_id];
-
-        if (sender_id !== receiver_id) {
-          const message = `Hello from Node ${sender_id}!`;
-          sender_node.send_message(receiver_id, message);
-        }
-      }
-    }
-  }
-}
-
-// Retrieve the stored node count value from local storage or default to 5
-const storedNodeCount = localStorage.getItem("nodeCount");
-const nodeCount = storedNodeCount ? parseInt(storedNodeCount) : 50000000;
-
-// Create the network with the node count
-const network = new Network(nodeCount);
-
-// Call the network and response function
-network.call_and_response();
-
-// Store the current node count in local storage
-localStorage.setItem("nodeCount", nodeCount.toString());
-
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
