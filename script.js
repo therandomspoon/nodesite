@@ -49,7 +49,7 @@ class Network {
   }
 }
 
-const network = new Network(5000000000);
+const network = new Network(5000000);
 network.call_and_response();
 
 
