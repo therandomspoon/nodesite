@@ -59,7 +59,7 @@ class Network {
 
 // Retrieve the stored node count value from local storage or default to 5
 const storedNodeCount = localStorage.getItem("nodeCount");
-const nodeCount = storedNodeCount ? parseInt(storedNodeCount) : 500000000000000000;
+const nodeCount = storedNodeCount ? parseInt(storedNodeCount) : 50000000;
 
 // Create the network with the node count
 const network = new Network(nodeCount);
