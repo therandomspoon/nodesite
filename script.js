@@ -47,8 +47,20 @@ class Network {
       }
     }
   }
+
+  startNodeIDIncrement() {
+    let nodeID = Object.keys(this.nodes).length; // Get the current number of nodes
+
+    setInterval(() => {
+      const newNode = new Node(nodeID);
+      this.nodes[nodeID] = newNode;
+      nodeID++;
+    }, 1000);
+  }
 }
 
 const network = new Network(50);
+network.startNodeIDIncrement();
 network.call_and_response();
+
 
